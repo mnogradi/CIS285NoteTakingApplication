@@ -65,5 +65,18 @@ namespace Note_Taking_Application
         {
             table.Clear();
         }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            int index = dataGridView1.CurrentCell.RowIndex;
+
+            if (index > -1)
+            {
+                txtTitle.Text = table.Rows[index].ItemArray[0].ToString();
+                txtMessage.Text = table.Rows[index].ItemArray[1].ToString();
+            }
+            table.Rows[index].Delete();
+
+        }
     }
 }
