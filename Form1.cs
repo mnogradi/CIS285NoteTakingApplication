@@ -76,7 +76,6 @@ namespace Note_Taking_Application
                 txtMessage.Text = table.Rows[index].ItemArray[1].ToString();
             }
             table.Rows[index].Delete();
-
         }
     }
 }
