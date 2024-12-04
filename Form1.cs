@@ -7,86 +7,151 @@ namespace Note_Taking_Application
 {
     public partial class Form1 : Form
     {
-        DataTable table;
-        string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "notes.txt");
+        /// <summary>
+        /// The DataTable that stores notes with "Title" and "Messages" columns.
+        /// </summary>
+        private DataTable table;
 
+        /// <summary>
+        /// The file path for saving and loading notes, stored in the user's Documents folder.
+        /// </summary>
+        private string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "notes.txt");
+
+        /// <summary>
+        /// Initializes the form and its components.
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
         }
-        
 
+        /// <summary>
+        /// Sets up the DataTable, binds it to the DataGridView, and loads notes from the file when the form loads.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event.</param>
+        /// <param name="e">Event arguments for the form load event.</param>
         private void Form1_Load(object sender, EventArgs e)
         {
+            // Initialize the DataTable
             table = new DataTable();
             table.Columns.Add("Title", typeof(String));
             table.Columns.Add("Messages", typeof(String));
 
+            // Bind the DataTable to the DataGridView
             dataGridView1.DataSource = table;
 
+            // Hide the "Messages" column and set the "Title" column width
             dataGridView1.Columns["Messages"].Visible = false;
             dataGridView1.Columns["Title"].Width = 186;
 
-            foreach (DataGridViewColumn column in dataGridView1.Columns) 
-            { 
-                column.SortMode = DataGridViewColumnSortMode.NotSortable; 
+            // Disable sorting for all DataGridView columns
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
 
+            // Load existing notes from the file
             LoadNotesFromFile();
         }
 
+        /// <summary>
+        /// Clears the Title and Message input fields for creating a new note.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event.</param>
+        /// <param name="e">Event arguments for the button click event.</param>
         private void btnNew_Click(object sender, EventArgs e)
         {
             txtTitle.Clear();
             txtMessage.Clear();
         }
 
+        /// <summary>
+        /// Saves the current Title and Message into the DataTable and updates the notes file.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event.</param>
+        /// <param name="e">Event arguments for the button click event.</param>
         private void btnSave_Click(object sender, EventArgs e)
         {
+            // Add the note to the DataTable
             table.Rows.Add(txtTitle.Text, txtMessage.Text);
+
+            // Save notes to the file
             SaveNotesToFile();
+
+            // Clear the input fields after saving
             txtTitle.Clear();
             txtMessage.Clear();
         }
 
+        /// <summary>
+        /// Displays the selected note's Title and Message in the input fields.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event.</param>
+        /// <param name="e">Event arguments for the button click event.</param>
         private void btnDisplay_Click(object sender, EventArgs e)
         {
             int index = dataGridView1.CurrentCell.RowIndex;
 
+            // Check if the selected row index is valid
             if (index > -1)
             {
-                txtTitle.Text = table.Rows[index].ItemArray[0].ToString();
-                txtMessage.Text = table.Rows[index].ItemArray[1].ToString();
+                txtTitle.Text = table.Rows[index]["Title"].ToString();
+                txtMessage.Text = table.Rows[index]["Messages"].ToString();
             }
         }
 
+        /// <summary>
+        /// Deletes the currently selected note from the DataTable and updates the notes file.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event.</param>
+        /// <param name="e">Event arguments for the button click event.</param>
         private void btnDelete_Click(object sender, EventArgs e)
         {
             int index = dataGridView1.CurrentCell.RowIndex;
 
-            table.Rows[index].Delete();
-            SaveNotesToFile();
+            // Delete the selected row
+            if (index > -1)
+            {
+                table.Rows[index].Delete();
+                SaveNotesToFile();
+            }
         }
 
+        /// <summary>
+        /// Clears all notes from the DataTable and updates the notes file.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event.</param>
+        /// <param name="e">Event arguments for the button click event.</param>
         private void btnClearAll_Click(object sender, EventArgs e)
         {
             table.Clear();
             SaveNotesToFile();
         }
 
+        /// <summary>
+        /// Loads the selected note for editing and deletes the original row from the DataTable.
+        /// Updates the notes file after deletion.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event.</param>
+        /// <param name="e">Event arguments for the button click event.</param>
         private void btnEdit_Click(object sender, EventArgs e)
         {
             int index = dataGridView1.CurrentCell.RowIndex;
 
+            // Check if the selected row index is valid
             if (index > -1)
             {
-                txtTitle.Text = table.Rows[index].ItemArray[0].ToString();
-                txtMessage.Text = table.Rows[index].ItemArray[1].ToString();
+                txtTitle.Text = table.Rows[index]["Title"].ToString();
+                txtMessage.Text = table.Rows[index]["Messages"].ToString();
+                table.Rows[index].Delete();
+                SaveNotesToFile();
             }
-            table.Rows[index].Delete();
-            SaveNotesToFile();
         }
 
+        /// <summary>
+        /// Saves all notes from the DataTable to a text file.
+        /// Each note is stored as a comma-separated line.
+        /// </summary>
         private void SaveNotesToFile()
         {
             using (StreamWriter writer = new StreamWriter(filePath))
@@ -98,6 +163,10 @@ namespace Note_Taking_Application
             }
         }
 
+        /// <summary>
+        /// Loads notes from the text file into the DataTable.
+        /// Expects each line to be in the format "Title,Message".
+        /// </summary>
         private void LoadNotesFromFile()
         {
             if (File.Exists(filePath))
