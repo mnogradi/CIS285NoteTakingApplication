@@ -101,7 +101,7 @@
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(75, 31);
             this.btnNew.TabIndex = 5;
-            this.btnNew.Text = "New";
+            this.btnNew.Text = "&New";
             this.btnNew.UseVisualStyleBackColor = true;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
@@ -111,7 +111,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 31);
             this.btnSave.TabIndex = 6;
-            this.btnSave.Text = "Save";
+            this.btnSave.Text = "&Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -121,7 +121,7 @@
             this.btnDisplay.Name = "btnDisplay";
             this.btnDisplay.Size = new System.Drawing.Size(75, 31);
             this.btnDisplay.TabIndex = 7;
-            this.btnDisplay.Text = "Display";
+            this.btnDisplay.Text = "&Display";
             this.btnDisplay.UseVisualStyleBackColor = true;
             this.btnDisplay.Click += new System.EventHandler(this.btnDisplay_Click);
             // 
@@ -131,7 +131,7 @@
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 31);
             this.btnEdit.TabIndex = 8;
-            this.btnEdit.Text = "Edit";
+            this.btnEdit.Text = "&Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
@@ -157,7 +157,7 @@
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 28);
             this.btnSearch.TabIndex = 11;
-            this.btnSearch.Text = "Search";
+            this.btnSearch.Text = "&Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
@@ -167,7 +167,7 @@
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 31);
             this.btnDelete.TabIndex = 12;
-            this.btnDelete.Text = "Delete";
+            this.btnDelete.Text = "&Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -177,7 +177,7 @@
             this.btnClearAll.Name = "btnClearAll";
             this.btnClearAll.Size = new System.Drawing.Size(75, 31);
             this.btnClearAll.TabIndex = 13;
-            this.btnClearAll.Text = "Clear All";
+            this.btnClearAll.Text = "&Clear All";
             this.btnClearAll.UseVisualStyleBackColor = true;
             this.btnClearAll.Click += new System.EventHandler(this.btnClearAll_Click);
             // 
@@ -196,7 +196,6 @@
             this.txtSetTag.Name = "txtSetTag";
             this.txtSetTag.Size = new System.Drawing.Size(75, 20);
             this.txtSetTag.TabIndex = 15;
-          
             // 
             // Form1
             // 
