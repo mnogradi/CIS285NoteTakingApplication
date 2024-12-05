@@ -8,7 +8,7 @@ namespace Note_Taking_Application
     public partial class Form1 : Form
     {
         /// <summary>
-        /// The DataTable that stores notes with "Title" and "Messages" columns.
+        /// The DataTable that stores notes with "Title", "Messages", and "Tag" columns.
         /// </summary>
         private DataTable table;
 
@@ -36,11 +36,13 @@ namespace Note_Taking_Application
             table = new DataTable();
             table.Columns.Add("Title", typeof(String));
             table.Columns.Add("Messages", typeof(String));
+            table.Columns.Add("Tag", typeof(String));
 
             // Bind the DataTable to the DataGridView
             dataGridView1.DataSource = table;
 
-            // Hide the "Messages" column and set the "Title" column width
+            // Hide the "Messages" and "Tag" columns and set the "Title" column width
+            dataGridView1.Columns["Tag"].Visible = false;
             dataGridView1.Columns["Messages"].Visible = false;
             dataGridView1.Columns["Title"].Width = 186;
 
@@ -55,7 +57,7 @@ namespace Note_Taking_Application
         }
 
         /// <summary>
-        /// Clears the Title and Message input fields for creating a new note.
+        /// Clears the Title, Message, and Tag input fields for creating a new note.
         /// </summary>
         /// <param name="sender">The object that triggered the event.</param>
         /// <param name="e">Event arguments for the button click event.</param>
@@ -63,17 +65,18 @@ namespace Note_Taking_Application
         {
             txtTitle.Clear();
             txtMessage.Clear();
+            txtSetTag.Clear();
         }
 
         /// <summary>
-        /// Saves the current Title and Message into the DataTable and updates the notes file.
+        /// Saves the current Title, Message, and Tag into the DataTable and updates the notes file.
         /// </summary>
         /// <param name="sender">The object that triggered the event.</param>
         /// <param name="e">Event arguments for the button click event.</param>
         private void btnSave_Click(object sender, EventArgs e)
         {
             // Add the note to the DataTable
-            table.Rows.Add(txtTitle.Text, txtMessage.Text);
+            table.Rows.Add(txtTitle.Text, txtMessage.Text, txtSetTag.Text);
 
             // Save notes to the file
             SaveNotesToFile();
@@ -81,10 +84,11 @@ namespace Note_Taking_Application
             // Clear the input fields after saving
             txtTitle.Clear();
             txtMessage.Clear();
+            txtSetTag.Clear();
         }
 
         /// <summary>
-        /// Displays the selected note's Title and Message in the input fields.
+        /// Displays the selected note's Title, Message, and Tag in the input fields.
         /// </summary>
         /// <param name="sender">The object that triggered the event.</param>
         /// <param name="e">Event arguments for the button click event.</param>
@@ -97,6 +101,7 @@ namespace Note_Taking_Application
             {
                 txtTitle.Text = table.Rows[index]["Title"].ToString();
                 txtMessage.Text = table.Rows[index]["Messages"].ToString();
+                txtSetTag.Text = table.Rows[index]["Tag"].ToString();
             }
         }
 
@@ -143,6 +148,7 @@ namespace Note_Taking_Application
             {
                 txtTitle.Text = table.Rows[index]["Title"].ToString();
                 txtMessage.Text = table.Rows[index]["Messages"].ToString();
+                txtSetTag.Text = table.Rows[index]["Tag"].ToString();
                 table.Rows[index].Delete();
                 SaveNotesToFile();
             }
@@ -158,14 +164,14 @@ namespace Note_Taking_Application
             {
                 foreach (DataRow row in table.Rows)
                 {
-                    writer.WriteLine($"{row["Title"]},{row["Messages"]}");
+                    writer.WriteLine($"{row["Title"]},{row["Messages"]},{row["Tag"]}");
                 }
             }
         }
 
         /// <summary>
         /// Loads notes from the text file into the DataTable.
-        /// Expects each line to be in the format "Title,Message".
+        /// Expects each line to be in the format "Title,Message,Tag".
         /// </summary>
         private void LoadNotesFromFile()
         {
@@ -177,13 +183,19 @@ namespace Note_Taking_Application
                     while ((line = reader.ReadLine()) != null)
                     {
                         string[] parts = line.Split(',');
-                        if (parts.Length == 2)
+                        if (parts.Length == 3)
                         {
-                            table.Rows.Add(parts[0], parts[1]);
+                            table.Rows.Add(parts[0], parts[1], parts[2]);
                         }
                     }
                 }
             }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            DataView search = table.DefaultView;
+            search.RowFilter = "tag LIKE '%" + txtGetTag.Text + "%'";
         }
     }
 }

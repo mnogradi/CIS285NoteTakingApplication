@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Note-Taking Application</name>
+    </assembly>
+    <members>
+        <member name="F:Note_Taking_Application.Form1.table">
+            <summary>
+            The DataTable that stores notes with "Title", "Messages", and "Tag" columns.
+            </summary>
+        </member>
+        <member name="F:Note_Taking_Application.Form1.filePath">
+            <summary>
+            The file path for saving and loading notes, stored in the user's Documents folder.
+            </summary>
+        </member>
+        <member name="M:Note_Taking_Application.Form1.#ctor">
+            <summary>
+            Initializes the form and its components.
+            </summary>
+        </member>
+        <member name="M:Note_Taking_Application.Form1.Form1_Load(System.Object,System.EventArgs)">
+            <summary>
+            Sets up the DataTable, binds it to the DataGridView, and loads notes from the file when the form loads.
+            </summary>
+            <param name="sender">The object that triggered the event.</param>
+            <param name="e">Event arguments for the form load event.</param>
+        </member>
+        <member name="M:Note_Taking_Application.Form1.btnNew_Click(System.Object,System.EventArgs)">
+            <summary>
+            Clears the Title, Message, and Tag input fields for creating a new note.
+            </summary>
+            <param name="sender">The object that triggered the event.</param>
+            <param name="e">Event arguments for the button click event.</param>
+        </member>
+        <member name="M:Note_Taking_Application.Form1.btnSave_Click(System.Object,System.EventArgs)">
+            <summary>
+            Saves the current Title, Message, and Tag into the DataTable and updates the notes file.
+            </summary>
+            <param name="sender">The object that triggered the event.</param>
+            <param name="e">Event arguments for the button click event.</param>
+        </member>
+        <member name="M:Note_Taking_Application.Form1.btnDisplay_Click(System.Object,System.EventArgs)">
+            <summary>
+            Displays the selected note's Title, Message, and Tag in the input fields.
+            </summary>
+            <param name="sender">The object that triggered the event.</param>
+            <param name="e">Event arguments for the button click event.</param>
+        </member>
+        <member name="M:Note_Taking_Application.Form1.btnDelete_Click(System.Object,System.EventArgs)">
+            <summary>
+            Deletes the currently selected note from the DataTable and updates the notes file.
+            </summary>
+            <param name="sender">The object that triggered the event.</param>
+            <param name="e">Event arguments for the button click event.</param>
+        </member>
+        <member name="M:Note_Taking_Application.Form1.btnClearAll_Click(System.Object,System.EventArgs)">
+            <summary>
+            Clears all notes from the DataTable and updates the notes file.
+            </summary>
+            <param name="sender">The object that triggered the event.</param>
+            <param name="e">Event arguments for the button click event.</param>
+        </member>
+        <member name="M:Note_Taking_Application.Form1.btnEdit_Click(System.Object,System.EventArgs)">
+            <summary>
+            Loads the selected note for editing and deletes the original row from the DataTable.
+            Updates the notes file after deletion.
+            </summary>
+            <param name="sender">The object that triggered the event.</param>
+            <param name="e">Event arguments for the button click event.</param>
+        </member>
+        <member name="M:Note_Taking_Application.Form1.SaveNotesToFile">
+            <summary>
+            Saves all notes from the DataTable to a text file.
+            Each note is stored as a comma-separated line.
+            </summary>
+        </member>
+        <member name="M:Note_Taking_Application.Form1.LoadNotesFromFile">
+            <summary>
+            Loads notes from the text file into the DataTable.
+            Expects each line to be in the format "Title,Message,Tag".
+            </summary>
+        </member>
+        <member name="F:Note_Taking_Application.Form1.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Note_Taking_Application.Form1.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Note_Taking_Application.Form1.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:Note_Taking_Application.Program.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="T:Note_Taking_Application.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Note_Taking_Application.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Note_Taking_Application.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>

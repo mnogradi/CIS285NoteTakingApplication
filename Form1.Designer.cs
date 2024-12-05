@@ -38,10 +38,12 @@
             this.btnDisplay = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtTag = new System.Windows.Forms.TextBox();
+            this.txtGetTag = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnClearAll = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtSetTag = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,7 +69,7 @@
             // 
             this.txtTitle.Location = new System.Drawing.Point(76, 26);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(100, 20);
+            this.txtTitle.Size = new System.Drawing.Size(75, 20);
             this.txtTitle.TabIndex = 2;
             // 
             // txtMessage
@@ -89,6 +91,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidth = 82;
             this.dataGridView1.Size = new System.Drawing.Size(189, 178);
             this.dataGridView1.TabIndex = 4;
             // 
@@ -141,12 +144,12 @@
             this.label3.TabIndex = 9;
             this.label3.Text = "Tag:";
             // 
-            // txtTag
+            // txtGetTag
             // 
-            this.txtTag.Location = new System.Drawing.Point(335, 25);
-            this.txtTag.Name = "txtTag";
-            this.txtTag.Size = new System.Drawing.Size(72, 20);
-            this.txtTag.TabIndex = 10;
+            this.txtGetTag.Location = new System.Drawing.Point(335, 25);
+            this.txtGetTag.Name = "txtGetTag";
+            this.txtGetTag.Size = new System.Drawing.Size(72, 20);
+            this.txtGetTag.TabIndex = 10;
             // 
             // btnSearch
             // 
@@ -156,6 +159,7 @@
             this.btnSearch.TabIndex = 11;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnDelete
             // 
@@ -177,15 +181,34 @@
             this.btnClearAll.UseVisualStyleBackColor = true;
             this.btnClearAll.Click += new System.EventHandler(this.btnClearAll_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(160, 29);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(29, 13);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Tag:";
+            // 
+            // txtSetTag
+            // 
+            this.txtSetTag.Location = new System.Drawing.Point(195, 26);
+            this.txtSetTag.Name = "txtSetTag";
+            this.txtSetTag.Size = new System.Drawing.Size(75, 20);
+            this.txtSetTag.TabIndex = 15;
+          
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(510, 327);
+            this.Controls.Add(this.txtSetTag);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.btnClearAll);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.txtTag);
+            this.Controls.Add(this.txtGetTag);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnDisplay);
@@ -217,10 +240,12 @@
         private System.Windows.Forms.Button btnDisplay;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtTag;
+        private System.Windows.Forms.TextBox txtGetTag;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnClearAll;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtSetTag;
     }
 }
 
