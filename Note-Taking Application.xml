@@ -81,6 +81,14 @@
             Expects each line to be in the format "Title,Message,Tag".
             </summary>
         </member>
+        <member name="M:Note_Taking_Application.Form1.btnSearch_Click(System.Object,System.EventArgs)">
+            <summary>
+            Searches the list of notes for a tag matching the input in the textbox.
+            Expects each line to be in the format "Title,Message,Tag".
+            </summary>
+            <param name="sender">The object that triggered the event.</param>
+            <param name="e">Event arguments for the button click event.</param>
+        </member>
         <member name="F:Note_Taking_Application.Form1.components">
             <summary>
             Required designer variable.
