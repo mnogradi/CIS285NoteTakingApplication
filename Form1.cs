@@ -191,7 +191,12 @@ namespace Note_Taking_Application
                 }
             }
         }
-
+        /// <summary>
+        /// Searches the list of notes for a tag matching the user input in the textbox.
+        /// Expects each line to be in the format "Title,Message,Tag".
+        /// </summary>
+        /// <param name="sender">The object that triggered the event.</param>
+        /// <param name="e">Event arguments for the button click event.</param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
             DataView search = table.DefaultView;
