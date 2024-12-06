@@ -156,7 +156,7 @@ namespace Note_Taking_Application
 
         /// <summary>
         /// Saves all notes from the DataTable to a text file.
-        /// Each note is stored as a comma-separated line.
+        /// Each note is stored as a '|'-separated line.
         /// </summary>
         private void SaveNotesToFile()
         {
@@ -164,14 +164,14 @@ namespace Note_Taking_Application
             {
                 foreach (DataRow row in table.Rows)
                 {
-                    writer.WriteLine($"{row["Title"]},{row["Messages"]},{row["Tag"]}");
+                    writer.WriteLine($"{row["Title"]}|{row["Messages"]}|{row["Tag"]}");
                 }
             }
         }
 
         /// <summary>
         /// Loads notes from the text file into the DataTable.
-        /// Expects each line to be in the format "Title,Message,Tag".
+        /// Expects each line to be in the format "Title|Message|Tag".
         /// </summary>
         private void LoadNotesFromFile()
         {
@@ -182,7 +182,7 @@ namespace Note_Taking_Application
                     string line;
                     while ((line = reader.ReadLine()) != null)
                     {
-                        string[] parts = line.Split(',');
+                        string[] parts = line.Split('|');
                         if (parts.Length == 3)
                         {
                             table.Rows.Add(parts[0], parts[1], parts[2]);
@@ -193,7 +193,7 @@ namespace Note_Taking_Application
         }
         /// <summary>
         /// Searches the list of notes for a tag matching the input in the textbox.
-        /// Expects each line to be in the format "Title,Message,Tag".
+        /// Expects each line to be in the format "Title|Message|Tag".
         /// </summary>
         /// <param name="sender">The object that triggered the event.</param>
         /// <param name="e">Event arguments for the button click event.</param>
